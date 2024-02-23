@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample HTML Page</title>
+    <style></style>
+    <script>
+      const options = {
+        method: 'GET',
+        headers: { 'User-Agent': 'insomnia/8.5.1' },
+      }
+
+      fetch('https://brasilaberto.com/api/v1/zipcode/88495000', options)
+        .then((response) => response.json())
+        .then((response) => {
+          document.querySelector('#old').innerText = JSON.stringify(
+            response,
+            null,
+            2
+          )
+        })
+        .catch((err) => {
+          document.querySelector('#old').style.color = 'red'
+          document.querySelector('#old').innerText = 'Erro de CORS'
+        })
+
+      fetch('https://api.brasilaberto.com/v1/zipcode/29703270', options)
+        .then((response) => response.json())
+        .then((response) => {
+          document.querySelector('#new').innerText = JSON.stringify(
+            response,
+            null,
+            2
+          )
+        })
+        .catch((err) => {
+          document.querySelector('#new').style.color = 'red'
+          document.querySelector('#new').innerText = 'Erro de CORS'
+        })
+    </script>
+    <meta
+      name="x-ce-data"
+      ceid="anmbbeeiaollmpadookgoakpfjkbidaf"
+      content="6frsCfLIcR90pwQn8TY7UYwcRAD5z3RGtrjdJjpiV5lulp/C1Th8FiFIp1pLCj85"
+    />
+  </head>
+  <body class="vsc-initialized" cz-shortcut-listen="true">
+    <h1>Cors test</h1>
+    <h2>GET https://brasilaberto.com/api/v1/zipcode/88495000</h2>
+    <div id="old" style="color: red"></div>
+    <h2>GET https://api.brasilaberto.com/v1/zipcode/88495000</h2>
+    <div id="new"></div>
+  </body>
+</html>
